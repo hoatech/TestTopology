@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: edu.fudan.storm:bench-tools:1.2.3-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/edu/fudan/storm/bench-tools/1.2.3-SNAPSHOT/bench-tools-1.2.3-20170312.123725-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/edu/fudan/storm/bench-tools/1.2.3-SNAPSHOT/bench-tools-1.2.3-20170312.123725-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/edu/fudan/storm/bench-tools/1.2.3-SNAPSHOT/bench-tools-1.2.3-20170312.123725-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
