@@ -120,6 +120,7 @@ public class ParallelTopology {
         conf.setNumAckers(this.numAckers);
         conf.put(Config.TOPOLOGY_DISABLE_LOADAWARE_MESSAGING, true);
         conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, this.maxPending);
+        conf.put(Config.TOPOLOGY_MESSAGE_TIMEOUT_SECS,10);
 
         StormTopology topo =b.createTopology();
         try {
@@ -131,7 +132,12 @@ public class ParallelTopology {
         } catch (AuthorizationException e) {
             e.printStackTrace();
         }
-        BasicMetricsCollector collector=new BasicMetricsCollector(conf,topo,"_p"+this.parallelism+"_d"+this.depth+"_f"+this.factor+"_w"+this.numWorkers+"_r"+this.rate);
+
+        //build up metric collector
+        String suffix = "";
+        if(this.enableHScheduler)
+            suffix="_eh";
+        BasicMetricsCollector collector=new BasicMetricsCollector(conf,topo,"_p"+this.parallelism+"_d"+this.depth+"_f"+this.factor+"_w"+this.numWorkers+suffix);
         collector.run();
         try {
             System.out.println("killing topology" +topo_name);
@@ -146,7 +152,7 @@ public class ParallelTopology {
             e.printStackTrace();
         }
     }
-    private static class UuidSpout extends BaseRichSpout implements IRichSpout {
+    private static class UuidSpout extends BaseRichSpout {
 
         private final Logger LOG = LoggerFactory.getLogger(getClass());
 
@@ -231,18 +237,6 @@ public class ParallelTopology {
         public void nextTuple() {
             this.emitCount++; // we start with msgId = 1
             this.collector.emit(new Values(this.uuid, this.payload), this.emitCount);
-            if(emitCount%spoutRate==0) {
-                long currentTime = System.currentTimeMillis();
-                if (currentTime - lastSleepTime <1000){
-                    Utils.sleep(1000-(currentTime-lastSleepTime));
-                }
-                lastSleepTime = System.currentTimeMillis();
-            }
-        }
-
-        @Override
-        public void fail(Object msgId) {
-            LOG.error("Message with Id {} failed.", msgId);
         }
     }
 
@@ -303,13 +297,13 @@ public class ParallelTopology {
                 this.workerMonitor.setContextInfo(context);
                 // this object is used in the emit/execute method to compute the number of inter-node messages
                 this.taskMonitor = new TaskMonitor(context.getThisTaskId());
-                taskMonitor.checkThreadId();
+                this.taskMonitor.checkThreadId();
             }
         }
 
         public void execute(Tuple input) {
-
-            this.collector.emit(input, new Values(this.uuid, input.getValue(1))); // we assume there is only one field
+            this.collector.emit(input, new Values(this.uuid, input.getValue(1)));
+            this.collector.ack(input);
         }
 
         public void declareOutputFields(OutputFieldsDeclarer declarer) {

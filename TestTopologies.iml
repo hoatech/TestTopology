@@ -30,7 +30,7 @@
     <orderEntry type="library" name="Maven: org.python:jython:2.7.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
     <orderEntry type="library" name="Maven: edu.fudan.storm:bench-tools:1.2.3-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: edu.fudan.storm.scheduler:heteros-scheduler:1.2.8-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: edu.fudan.storm.scheduler:heteros-scheduler:1.3.6-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.2.4" level="project" />
     <orderEntry type="library" name="Maven: redis.clients:jedis:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.4.2" level="project" />

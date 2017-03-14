@@ -6,4 +6,5 @@ package edu.fudan.storm.stormtest.utils;
 public class TestUtil {
     public static final String current_user = System.getProperty("user.name");
     public static final String result_path = "/home/"+current_user+"/benchmark/";
+    public static final String cu_file_path = "/home/"+current_user+"/cuFile/";
 }

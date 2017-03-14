@@ -1,4 +1,5 @@
+/home/ybwang/IdeaProjects/jcuda-samples/TestTopologies/src/main/java/edu/fudan/storm/stormtest/topology/CPUMatrixMultiplyTopology.java
 /home/ybwang/IdeaProjects/jcuda-samples/TestTopologies/src/main/java/edu/fudan/storm/stormtest/topology/ContinuousQueryTopology.java
+/home/ybwang/IdeaProjects/jcuda-samples/TestTopologies/src/main/java/edu/fudan/storm/stormtest/topology/GPUMatrixMultiplyTopology.java
 /home/ybwang/IdeaProjects/jcuda-samples/TestTopologies/src/main/java/edu/fudan/storm/stormtest/topology/ParallelTopology.java
-/home/ybwang/IdeaProjects/jcuda-samples/TestTopologies/src/main/java/edu/fudan/storm/stormtest/topology/MatrixMultiplyTopology.java
 /home/ybwang/IdeaProjects/jcuda-samples/TestTopologies/src/main/java/edu/fudan/storm/stormtest/utils/TestUtil.java
